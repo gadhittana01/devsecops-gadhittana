@@ -1,0 +1,4 @@
+[bandit]
+# Bandit configuration file
+exclude_dirs = /tests,/venv,/.venv,/.git
+skips = B101,B601

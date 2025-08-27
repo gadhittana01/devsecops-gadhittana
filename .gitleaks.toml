@@ -1,0 +1,36 @@
+title = "Gitleaks Configuration"
+
+# Global settings
+[extend]
+useDefault = true
+
+# Additional rules for common secrets
+[[rules]]
+id = "docker-hub-token"
+description = "Docker Hub Access Token"
+regex = '''dckr_pat_[A-Za-z0-9_-]{32}'''
+tags = ["docker", "token"]
+
+[[rules]]
+id = "github-token"
+description = "GitHub Personal Access Token"
+regex = '''ghp_[A-Za-z0-9_]{36}'''
+tags = ["github", "token"]
+
+[[rules]]
+id = "generic-api-key"
+description = "Generic API Key"
+regex = '''(?i)api[_-]?key[_-]?[:=]\s*['""]?[a-z0-9]{32,}['""]?'''
+tags = ["api", "key"]
+
+# Allowlist certain files or paths
+[allowlist]
+paths = [
+  ".gitleaks.toml",
+  "README.md",
+  "requirements.txt",
+  "dev-requirements.txt"
+]
+
+# Allowlist certain commits (if needed)
+commits = []
