@@ -37,10 +37,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r dev-requirements.txt
+          # Install package in editable mode for proper imports
+          pip install -e .
 
       - name: Run unit tests
         run: |
-          pytest tests/ -v --tb=short
+          pytest
 
   # Job 2: SAST (Static Application Security Testing)
   sast:
@@ -122,7 +124,7 @@ jobs:
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
   # Job 5: Build and Push Docker Image
   build_and_push:

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "notes-app"
+version = "0.1.0"
+description = "A simple notes API built with FastAPI"
+authors = [{name = "DevSecOps Team"}]
+# Dependencies are managed in requirements.txt and dev-requirements.txt
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv", ".venv", ".git"]
+skips = ["B101", "B601"]
